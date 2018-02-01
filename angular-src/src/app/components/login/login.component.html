@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<br><br>
+<div class="container">
+  <div class="row">
+      <form #f="ngForm" (ngSubmit)="submit()" class="card col s8 yellow lighten-5">
+              <p class="center" style="font-size:2em">Login Form</p>
+          
+          <div class="input-field col s12">
+              <input id="email" type="email" class="validate" name="email" [(ngModel)]="loginUser.email" required #email="ngModel" email>
+              <label for="email">Email</label>
+          </div>
+        
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate" name="password" [(ngModel)]="loginUser.password" required #password="ngModel">
+            <label for="password">Password</label>
+          </div> 
+          
+          <div class="container">
+            <button class="btn waves-effect waves-light right" type="submit"  name="action" [disabled]="!f.valid">Submit
+                <i class="material-icons right"></i>
+            </button> 
+          </div>  
+      </form>
+      
+    </div>
+    <div class="row">
+        <div *ngIf="!f.valid && f.touched"  class="card col s8 red lighten-1">
+            <div *ngIf="email.errors?.required && email.touched">   
+              Email is required.
+            </div>
+            <div *ngIf="!email.errors?.required && email.touched && email.errors?.email">  
+              Email is not valid.
+            </div>
+            <div *ngIf="password.errors?.required && password.touched">     
+              Password is required.
+            </div>
+            
+        </div>
+        <div *ngIf="errors.length > 0" class="card col s8 red lighten-1">
+          <div *ngFor="let e of errors">
+            {{e}}
+          </div>
+        </div>
+        
+    </div>
+    
+    
+  </div>
+<br><br>

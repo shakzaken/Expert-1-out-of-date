@@ -1,0 +1,39 @@
+<br><br><br>
+
+<div class="row">
+  <div class="col s1"></div>
+  <div class="col s10">
+      <div class="card">
+
+          <br>
+          <h4 class="center">Users List</h4>
+      
+          <table class="table bordered striped" width="100%">
+            <thead>
+              <tr>
+                <th width="10%">Id</th>
+                <th width="25%">First Name</th>
+                <th width="25%">Last Name</th>
+                <th width="30%">Email</th>
+                <th width="10%">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let u of users">
+                <td>{{u.id}}</td>
+                <td>{{u.firstName}}</td>
+                <td>{{u.lastName}}</td>
+                <td>{{u.email}}</td>
+                <td>
+                  <a type="button" (click)="deleteUser(u.id)" routerLink="/admin/users-list">
+                    <i class="material-icons small" style="color:#73d16a">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  </div>
+  <div class="col s1"></div>
+  
+</div>

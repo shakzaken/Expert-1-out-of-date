@@ -1,0 +1,31 @@
+<nav style="height:70px">
+    <div class="nav-wrapper  cyan lighten-2">
+      <div class="container">
+        <a href="#" class="brand-logo">Expert</a>
+
+
+        <ul *ngIf="!loggedIn()" id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a routerLink='/login' class="nav-link">Login</a></li>
+          <li><a routerLink='/register' class="nav-link">Register</a></li>
+        </ul>
+
+        
+        <ul *ngIf="loggedIn()" id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#" class="nav-link">{{user.email}}</a></li>
+          <li><a (click)="logout()" class="nav-link">Logout</a></li>
+        </ul>
+
+        <ul  id="nav-mobile" class="right hide-on-med-and-down center">
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          
+          <li ><a routerLink='/books' class="nav-link">Books</a></li>
+          <li><a routerLink='/admin' class="nav-link">Admin</a></li>
+          <li><a routerLink='/cart' class="nav-link"><i class="cart-icon fa fa-shopping-cart"></i>my Cart</a></li>
+
+        </ul>
+      </div>
+    </div>
+</nav>
+

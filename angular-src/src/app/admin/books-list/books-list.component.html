@@ -1,0 +1,44 @@
+
+<br>
+
+<div class="card">
+    
+      <br>
+        <h4 class="center">Books List</h4>
+        
+        <div class="container">
+          <div class="container">
+              <hr>
+          </div>
+        </div>
+ 
+  <table class="table bordered striped" width="100%">
+    <thead>
+      <tr>
+        <th width="5%">Number</th>
+        <th width="20%">Name</th>
+        <th width="15%">Category</th>
+        <th width="10%">Price</th>
+        <th width="10%">Quantity</th>
+        <th width="15%">Date</th>
+        <th width="10%">Picture</th>
+        <th width="5%">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of books ;let i = index">
+        <td>{{i+1}}</td>
+        <td>{{b.name}}</td>
+        <td>{{b.category.name}}</td>
+        <td>{{b.price}}</td>
+        <td>{{b.quantity}}</td>
+        <td>{{b.date}}</td>
+        <td><img [src]="b.pictureUrl" alt=""  width="50px"> </td>
+        <td><a type="button" (click)="deleteBook(b._id)" routerLink="/admin/books-list"><i class="material-icons small" style="color:#73d16a">delete</i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

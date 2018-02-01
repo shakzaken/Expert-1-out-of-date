@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m6">
+
+      <p class="p-cart"><i class="fa fa-shopping-cart"></i>  My Cart</p>
+      <div class="card">
+          <table class="striped bordered">
+              <thead>
+                <tr>
+                  <th>Item number</th>
+                  <th>Book Name</th>
+                  <th>Book Price</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of smallCart; index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{c.name}}</td>
+                  <td>{{c.price}}</td>
+                  <td>{{c.quantity}}</td>
+                  <td>{{(c.price)*(c.quantity) }}</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+      <form  (submit)="onSubmit()">
+        <button type ="submit" class="btn btn-large b-cart blue">Buy</button>
+      </form>
+      
+      <p class="right ">Total amount: {{total}}</p>
+
+     
+    </div>
+    <div class="col s12-m6">
+      
+    </div>
+  </div>
+  
+</div>

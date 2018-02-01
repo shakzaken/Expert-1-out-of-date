@@ -1,0 +1,21 @@
+<br><br><br><br>
+
+  
+ <div class="row">
+   <div class="col s1"></div>
+   <div class="col s11">
+     <form (ngSubmit)="submit(f)" class="card col s8" style="padding:2ch" #f="ngForm">
+        <p class="center" style="font-size:2ch">Add Category</p>
+        <div class="input-field">
+          <input type="text" id="name" class="validate" required maxlength="255" [(ngModel)]="category.name" name="categoryName" #name="ngModel">
+          <label for="name">Name</label>
+        </div>
+        <button type="submit" class="btn right" [disabled]="!f.valid" >Save Category</button>
+        <br>
+      </form>
+      <div *ngIf="name.errors?.required && name.touched" class="card col s8 red lighten-3">
+        category name is required
+      </div>
+   </div>
+   
+ </div>
