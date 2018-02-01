@@ -1427,7 +1427,8 @@ var RegisterComponent = (function () {
 var config = (function () {
     function config() {
     }
-    config.serverUrl = "http://localhost:3000/";
+    // public static serverUrl ="http://localhost:3000/";
+    config.serverUrl = "http://159.65.17.30:3000/";
     return config;
 }());
 
