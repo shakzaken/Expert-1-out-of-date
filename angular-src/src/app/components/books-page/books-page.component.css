@@ -2,3 +2,71 @@
 h8{
     text-align: center
 }
+
+.book-card{
+    height:21rem;
+    width:23%;
+    margin-top: 25px;
+    margin-right: 10px;
+    position: inline;
+    float: left;
+    
+}
+
+.books-container{
+    width: 100%;
+    margin-left:30px; 
+}
+
+.list-container{
+    overflow: hidden;
+}
+
+
+@media(max-width: 1100px){
+
+    .book-card{
+        height:21rem;
+        width:30%;
+        margin-top: 25px;
+        margin-right: 10px;
+        position: block;
+         
+    }
+
+    
+
+}
+
+
+@media(max-width: 850px){
+
+    .book-card{
+        height:21rem;
+        width:45%;
+        margin-top: 25px;
+        margin-right: 10px;
+        position: block;
+         
+    }
+
+
+}
+
+
+@media(max-width: 550px){
+
+    .book-card{
+        height:21rem;
+        width:100%;
+        margin-top: 25px;
+        margin-right: 10px;
+        position: block;
+         
+    }
+
+    
+
+}
+
+

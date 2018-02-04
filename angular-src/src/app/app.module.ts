@@ -6,7 +6,6 @@ import { HttpClient } from 'selenium-webdriver/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routes,RouterModule} from '@angular/router';
-//import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
 
 import { AppComponent } from './app.component';
@@ -32,18 +31,18 @@ import { UsersListComponent } from './admin/users-list/users-list.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { BooksPageComponent } from './components/books-page/books-page.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { OrdersService } from './services/orders.service';
 
 
 const appRoutes : Routes = [
   {path:'login', component: LoginComponent },
   {path:'register', component: RegisterComponent},
   {path:'courses',component: CoursesComponent},
-  {path:'books',component: BooksPageComponent},
   {path:'cart',component: CartPageComponent},
 
   {path:'admin/:name',component: PanelComponent},
   {path:'admin',component: PanelComponent},
-  {path: '',component: HomeComponent}
+  {path: '',component: BooksPageComponent}
   
 
 
@@ -82,7 +81,8 @@ const appRoutes : Routes = [
     AuthService,
     CategoriesService,
     BooksService,
-    CartService
+    CartService,
+    OrdersService
   ],
   bootstrap: [AppComponent]
 })

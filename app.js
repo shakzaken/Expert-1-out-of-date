@@ -18,6 +18,7 @@ const app = express();
 const users = require('./routes/users');
 const categories = require('./routes/categories');
 const books = require('./routes/books');
+const orders = require('./routes/orders');
 
 const port = process.env.PORT || 3000;
 
@@ -34,6 +35,7 @@ require('./config/passport')(passport);
 app.use('/users',users);
 app.use('/categories',categories);
 app.use('/books',books);
+app.use('/orders',orders);
 
 
 app.get('/',(req,res) =>{

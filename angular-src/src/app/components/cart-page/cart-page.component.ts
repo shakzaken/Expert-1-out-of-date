@@ -1,3 +1,4 @@
+import { OrdersService } from './../../services/orders.service';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +12,10 @@ export class CartPageComponent implements OnInit {
   myCart;
   smallCart;
   total:number;
-  constructor(private cartService : CartService) { }
+  order;
+  constructor(
+    private cartService : CartService,
+    private ordersService: OrdersService) { }
 
   ngOnInit() {
     this.myCart = this.cartService.getMyCart();
@@ -26,6 +30,14 @@ export class CartPageComponent implements OnInit {
 
 
   onSubmit(){
-    
+    this.ordersService.saveOrder(this.smallCart)
+      .subscribe(order =>{
+        console.log(order);
+      }, err =>{
+        console.log(err);
+      });
   }
-}
+
+
+
+}// end component.

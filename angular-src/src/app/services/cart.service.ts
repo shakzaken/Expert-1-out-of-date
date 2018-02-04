@@ -1,9 +1,12 @@
+import { config } from './../config/config';
 import { Injectable } from '@angular/core';
+
 
 @Injectable()
 export class CartService {
 
   public cartBooks : any[];
+  
 
   constructor() {
     this.cartBooks = [];
@@ -39,12 +42,12 @@ export class CartService {
     let arr = [];
     allBooks.forEach((val,index) => {
       arr.push({
-                index:index ,
-                 quantity:0 ,
-                 name: val.name,
-                 price: val.price
-
-                });
+          index:index ,
+          quantity:0 ,
+          bookName: val.name,
+          price: val.price,
+          bookId: val._id
+        });
     });
 
     localStorage.setItem('myCart',JSON.stringify(arr));
@@ -52,5 +55,6 @@ export class CartService {
     return arr;
   }
 
+  
 
 }

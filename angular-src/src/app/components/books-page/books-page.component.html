@@ -22,15 +22,15 @@
 
 
 <nav>  
-    <div class="nav-wrapper   grey lighten-3">
+    <div class="nav-wrapper grey lighten-3 list-container">
       
           <ul id="nav-mobile" class="hide-on-med-and-down" style="width:80%; margin:auto">
               
               <li *ngFor="let e of categoriesForView">
-                <a routerLink="books"  class="btn white" style="color:black; font-size:20px ; font-weight:400" (click)="filterCategory(e.id)">{{e.name}}</a>
+                <a routerLink="/"  class="btn white" style="color:black; font-size:20px ; font-weight:400" (click)="filterCategory(e.id)">{{e.name}}</a>
               </li>
               <li>
-                  <a routerLink="books"  class="btn white" style="color:black; font-size:20px ; font-weight:400" (click)="unFilter()">All Categories</a>
+                  <a routerLink="/"  class="btn white" style="color:black; font-size:20px ; font-weight:400" (click)="unFilter()">All Categories</a>
                 </li>
             </ul>
     </div>
@@ -39,45 +39,32 @@
 
 
 <div id="books-body" class="grey lighten-5">
-
   <br><br>
-
-
-<div  class="row" >
-        <div class="col s1"></div>
-        <div class="col s10">
-          <div class="row">
-              <div *ngFor="let b of books; index as i" class="col s3">
-                  <br>
-                  <div class="card" style="height:21rem; width:18rem">
-                    <div class="card-image"  style="height:10rem; width:18rem">
-                      <img [src]="b.pictureUrl"  style="height:10rem; width:18rem">
-                      
-                    </div>
-                    <div class="card-content" style="height:6rem">
-                      <p style="font-weight:400; font-size:16px">{{b.name}}</p>
-                    </div>
-                    <div *ngIf="localBooks[i].quantity < 1" class="card-action" >
-                      <a routerLink="/books"(click)="addToCart(i)">Add To Cart</a>
-                    </div>
-                    <div *ngIf="localBooks[i].quantity > 0" class="card-action yellow lighten-5" style="width:100%" >
-                      <a routerLink="/books" (click)="addToCart(i)" class="btn-floating btn waves-effect waves-light cyan lighten-3" style="margin-right:60px"><i  class="fa fa-plus"></i></a>
-
-                      <span style="font-size:18px">{{localBooks[i].quantity}}</span>
-
-                      <a routerLink="/books" (click)="decToCart(i)" class="btn-floating btn waves-effect waves-light cyan lighten-3 right" ><i  class="fa fa-minus" ></i></a>
-                    </div>
-                  </div>
-                </div>
-          </div>
-        </div>
-        <div class="col s1"></div>
-
-  <!-- <div *ngFor="let b of bookArr" class="col s3" > -->
+ 
+  <div *ngFor="let b of books; index as i" class="books-container" >  
       
-  
+    <div class="book-card">
+      <div class="card"  style="height:21rem; width:18rem">
+        <div class="card-image"  style="height:10rem; width:18rem">
+          <img [src]="b.pictureUrl"  style="height:10rem; width:18rem">
+          
+        </div>
+        <div class="card-content" style="height:6rem">
+          <p style="font-weight:400; font-size:16px">{{b.name}}</p>
+        </div>
+        <div *ngIf="localBooks[i].quantity < 1" class="card-action" >
+          <a routerLink="/"(click)="addToCart(i)">Add To Cart</a>
+        </div>
+        <div *ngIf="localBooks[i].quantity > 0" class="card-action yellow lighten-5" style="width:100%" >
+          <a routerLink="/" (click)="addToCart(i)" class="btn-floating btn waves-effect waves-light cyan lighten-3" style="margin-right:60px"><i  class="fa fa-plus"></i></a>
 
-</div>
+          <span style="font-size:18px">{{localBooks[i].quantity}}</span>
 
-</div>
+          <a routerLink="/" (click)="decToCart(i)" class="btn-floating btn waves-effect waves-light cyan lighten-3 right" ><i  class="fa fa-minus" ></i></a>
+        </div>
+      </div>
+    </div>
+      
+  </div>
+ 
 

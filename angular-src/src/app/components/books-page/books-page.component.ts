@@ -29,7 +29,6 @@ export class BooksPageComponent implements OnInit {
         this.books = books; 
         this.allBooks = books;
         this.localBooks = this.cartService.initStorage(this.books);
-        console.log(this.allBooks);
       });
      this.categoriesService.getCategories()
         .subscribe((categories:any[]) =>{
@@ -38,7 +37,6 @@ export class BooksPageComponent implements OnInit {
             this.categoriesForView = [];
             for(var i = 0 ; i < limit && i<categories.length ; i++)  {
               this.categoriesForView[i] = this.categories[i];
-              console.log(this.categoriesForView);
             }
         }); 
         
@@ -66,19 +64,6 @@ export class BooksPageComponent implements OnInit {
     }
   
 
-    // updateStorage() {
-    //   this.localBooks = JSON.parse(localStorage.getItem('myCart'));
-    // }
-
-    // initStorage() {
-    //   let arr = [];
-    //   this.allBooks.forEach((val,index) => {
-    //     arr.push({index:index , quantity:0});
-    //   });
-
-    //   localStorage.setItem('myCart',JSON.stringify(arr));
-    //   this.updateStorage();
-    // }
  
 
 }
