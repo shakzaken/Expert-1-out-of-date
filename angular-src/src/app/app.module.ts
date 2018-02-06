@@ -32,6 +32,8 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { BooksPageComponent } from './components/books-page/books-page.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { OrdersService } from './services/orders.service';
+import { OrdersListComponent } from './admin/orders-list/orders-list.component';
+import { OrderPageComponent } from './components/order-page/order-page.component';
 
 
 const appRoutes : Routes = [
@@ -39,6 +41,8 @@ const appRoutes : Routes = [
   {path:'register', component: RegisterComponent},
   {path:'courses',component: CoursesComponent},
   {path:'cart',component: CartPageComponent},
+  {path:'order',component: OrderPageComponent},
+
 
   {path:'admin/:name',component: PanelComponent},
   {path:'admin',component: PanelComponent},
@@ -65,7 +69,9 @@ const appRoutes : Routes = [
     UsersListComponent,
     CoursesComponent,
     BooksPageComponent,
-    CartPageComponent
+    CartPageComponent,
+    OrdersListComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<br><br>
+<div class="row">
+  <div class="col s1"></div>
+  <div class="col s9">
+    <div class="card">
+      <br>
+      <h4 class="center">Orders Table</h4>
+      <br>
+      <table class="bordered striped" >
+        <thead>
+          <tr>
+            <th class="center">Order Id</th>
+            <th class="center">Customer Name</th>
+            <th class="center">Order Description</th>
+            <th class="center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let o of orders;let i = index">
+            <td class="center">{{i+1}}</td>
+            <td class="center">{{o.user.firstName}}  {{o.user.lastName}}</td>
+            <td class="center"><ul>
+              <li *ngFor="let item of o.items">
+                  {{item.quantity}} * {{item.book.name}}
+              </li>
+              overAll : {{calculate(o.items) | currency}}
+            </ul></td>
+
+            <td class="center">  
+                 <a type="button" (click)="deleteOrder(o._id)"  routerLink="/admin/orders-list" ><i class="material-icons small" style="color:#0099ff">delete</i></a>   
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col s8"></div>
+</div>

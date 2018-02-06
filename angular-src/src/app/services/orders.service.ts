@@ -16,7 +16,6 @@ export class OrdersService {
    }
 
    saveOrder(items){
-
      if(!this.AuthService.loggedIn){
       this.router.navigate(['login']);
       return;
@@ -30,7 +29,19 @@ export class OrdersService {
        console.log(data);
       return this.HttpClient.post(this.ordersUrl,data);
      }
-     
+   }
+
+   getOrders(){
+     return this.HttpClient.get(this.ordersUrl);
+   }
+
+
+   deleteOrder(orderId){
+        return this.HttpClient.delete(`${this.ordersUrl}/${orderId}`);  
+   }
+
+   getOrder(userId){
+     return this.HttpClient.get(`${this.ordersUrl}/${userId}`);
    }
 
 }

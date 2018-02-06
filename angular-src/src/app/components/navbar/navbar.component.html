@@ -1,7 +1,7 @@
 <nav style="height:70px">
     <div class="nav-wrapper  cyan lighten-2">
       <div class="container">
-        <a href="#" class="brand-logo">Expert</a>
+        <a routerLink="/" class="brand-logo">Expert</a>
 
 
         <ul *ngIf="!loggedIn()" id="nav-mobile" class="right hide-on-med-and-down">
@@ -23,6 +23,7 @@
           
           <li><a routerLink='/admin' class="nav-link">Admin</a></li>
           <li><a routerLink='/cart' class="nav-link"><i class="cart-icon fa fa-shopping-cart"></i>my Cart</a></li>
+          <li><a routerLink='/order' class="nav-link"><i class="fa fa-envelope"></i> my Orders</a></li>
 
         </ul>
       </div>
