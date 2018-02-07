@@ -20,7 +20,7 @@ const categories = require('./routes/categories');
 const books = require('./routes/books');
 const orders = require('./routes/orders');
 
-const port = process.env.PORT || 3000;
+const port = config.port;
 
 app.use(cors());
 
