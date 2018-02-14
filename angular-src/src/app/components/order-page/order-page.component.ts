@@ -24,6 +24,7 @@ export class OrderPageComponent implements OnInit {
       this.ordersService.getOrder(this.user.id)
         .subscribe(orders =>{
           this.orders = orders;
+          console.log(this.orders);
         },err =>{
           console.log(err);
         });

@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     let itemsForDb = [];
     itemsFromClient.forEach((value) =>{
         itemsForDb.push({
-            book : value.bookId,
+            book : value.id,
             quantity : value.quantity
         });
     });

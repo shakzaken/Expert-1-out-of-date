@@ -1,5 +1,5 @@
 export interface Book {
-    id: number;
+    id: string;
     description:string
     name:string;
     price: number;
@@ -8,3 +8,15 @@ export interface Book {
     categoryId: number;
     date: DateTimeFormat;
   }
+
+
+  export interface CartBook {
+    id: String;
+    name:String;
+    price: number;
+    quantity: number;
+    pictureUrl: String;
+    categoryId: String;
+  }
+
+

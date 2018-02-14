@@ -6,6 +6,8 @@ import { Component, OnInit ,NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
+
 
 
 
@@ -22,7 +24,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private userService : UserService,
     private router : Router,
-    private authService: AuthService) { 
+    private authService: AuthService,
+    private flashMessagesService: FlashMessagesService) { 
       this.user = {
         firstName: '',
         lastName : '',
@@ -42,16 +45,12 @@ export class RegisterComponent implements OnInit {
         .subscribe(user =>{
           console.log(user);
           this.router.navigate(['/login']);
+          this.flashMessagesService.show('You are Registered and can login',{cssClass: 'flash-success',timeout: 4000});
         },err =>{
-          this.errors.push({name:"errorFromServer",msg:err.error});
+          this.flashMessagesService.show(err.error,{cssClass: 'flash-error',timeout: 4000});
+          //this.errors.push({name:"errorFromServer",msg:err.error});
         });
 
-      // this.userService.CreateUser(this.user)
-      //   .subscribe(user => {
-      //     console.log(user);
-      //     this.router.navigate(['/login']);
-      //       },
-      //       err => this.errors.push({ name: "errorFromServer", msg:err.error }) );
         
     } else {
       var passwordsError : Error = {

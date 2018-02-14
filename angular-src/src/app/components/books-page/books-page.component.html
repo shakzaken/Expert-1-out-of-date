@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 
 
 
@@ -7,10 +6,7 @@
     <p class="center" style="font-size:20px; margin-top:3px; padding-top:10px"></p>
 </div>
 
-<!--
-<img  src="https://static.pexels.com/photos/533930/pexels-photo-533930.jpeg"  alt=""
- style="height:20rem; width:100%">
--->
+
 <img  src="assets/images/star.jpg"  alt=""
  style="height:20rem; width:100%">
 
@@ -52,15 +48,15 @@
         <div class="card-content" style="height:6rem">
           <p style="font-weight:400; font-size:16px">{{b.name}}</p>
         </div>
-        <div *ngIf="localBooks[i].quantity < 1" class="card-action" >
-          <a routerLink="/"(click)="addToCart(i)">Add To Cart</a>
+        <div *ngIf="b.quantity == 0" class="card-action" >
+          <a routerLink="/" (click)="addToCart(b)">Add To Cart</a>
         </div>
-        <div *ngIf="localBooks[i].quantity > 0" class="card-action yellow lighten-5" style="width:100%" >
-          <a routerLink="/" (click)="addToCart(i)" class="btn-floating btn waves-effect waves-light cyan lighten-3" style="margin-right:60px"><i  class="fa fa-plus"></i></a>
+        <div *ngIf="b.quantity > 0" class="card-action yellow lighten-5" style="width:100%" >
+          <a  (click)="addToCart(b)" class="btn-floating btn waves-effect waves-light cyan lighten-3" style="margin-right:60px"><i  class="fa fa-plus"></i></a>
 
-          <span style="font-size:18px">{{localBooks[i].quantity}}</span>
+          <span style="font-size:18px">{{b.quantity}}</span>
 
-          <a routerLink="/" (click)="decToCart(i)" class="btn-floating btn waves-effect waves-light cyan lighten-3 right" ><i  class="fa fa-minus" ></i></a>
+          <a  (click)="decToCart(b)" class="btn-floating btn waves-effect waves-light cyan lighten-3 right" ><i  class="fa fa-minus" ></i></a>
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
+import { NavService } from './../../services/nav.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { loginUser } from '../../models/user.model';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -13,32 +16,26 @@ export class LoginComponent implements OnInit {
   loginUser : loginUser;
   errors : any[];
 
-  constructor(private authService : AuthService ,private router : Router) {
-    this.loginUser = {
-      email:'',
-      password:''
-    }
+  constructor(
+    private authService : AuthService,
+    private router : Router,
+    private flashMessagesService: FlashMessagesService,
+    private navService: NavService) {
+      this.loginUser = {
+        email:'',
+        password:''
+      }
     
    }
 
   ngOnInit() {
     this.errors = [];
+    this.navService.checkUrl();
+    console.log( this.navService.getUrl());
   }
 
   submit() {
     
-    //  this.authService.login(this.loginUser)
-    //  .subscribe(res => {
-    //   if(res) {
-    //     localStorage.setItem("user",JSON.stringify(res));
-    //     this.router.navigate(["/"]);
-    //     location.reload();
-    //   }
-      
-    // } , err =>{
-    //   console.log( "err ",err);
-    //   this.errors.push(err.error);
-    // });  
       
     this.authService.authenticateUser(this.loginUser)
       .subscribe((res:any) =>{
@@ -48,6 +45,7 @@ export class LoginComponent implements OnInit {
         }else{
           console.log(res.msg);
           this.router.navigate(['login']);
+          this.flashMessagesService.show(res.msg,{cssClass: 'flash-error',timeout: 4000});
         }
 
       });

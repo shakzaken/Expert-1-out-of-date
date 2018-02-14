@@ -12,15 +12,13 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   user;
   
-  constructor(private authService : AuthService , private router: Router) { }
+  constructor(
+    private authService : AuthService ,
+    private router: Router) { }
 
 
   ngOnInit() {
-    
-    if(this.loggedIn()){
       this.user = JSON.parse(localStorage.getItem('user'));
-    }
-
   }
 
   loggedIn(){

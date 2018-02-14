@@ -19,9 +19,9 @@ export class UsersListComponent implements OnInit {
   }
 
 
-  deleteUser(id : number) {
+  deleteUser(id : string) {
     if(confirm("Are you sure you want to delete this user?")) {
-    this.userService.deleteUser(id)
+      this.userService.deleteUser(id)
       .subscribe(user => {
         console.log("User deleted ! ",user);
         this.ngOnInit();

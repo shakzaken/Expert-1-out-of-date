@@ -4,6 +4,8 @@ const User = require('../models/user');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
+const BAD_REQUEST = 400;
+const NOT_FOUND = 404;
 
 router.post('/register', (req, res , next) => {
     let newUser = new User({
@@ -11,15 +13,27 @@ router.post('/register', (req, res , next) => {
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password
-    });
+    }); 
+
+    User.find({email: req.body.email})
+        .then(users =>{
+            if(users.length > 0){
+                return res.status(BAD_REQUEST).json("Email already Exists");
+            }else{
+                newUser.save()
+                .then(newUserAdded =>{
+                    res.json({success: true, msg:'user registered'});
+                })
+                .catch(err =>{
+                    console.log(err);
+                    res.status(BAD_REQUEST).json({success: false, msg:'Failed to register user'});
+                });
+            }   
+        }).catch(err =>{
+            console.log(err);
+            return res.status(BAD_REQUEST).json("Error cheking for email");
+        });
      
-    User.addUser(newUser,(err, user)=>{
-        if(err){
-            res.json({success: false, msg:'Failed to register user'});
-        } else{
-            res.json({success: true, msg:'user registered'});
-        }
-    });
 });
 
 router.post('/authenticate', (req, res , next) => {
@@ -30,7 +44,7 @@ router.post('/authenticate', (req, res , next) => {
     User.getUserByEmail(email, (err,user) =>{
         if(err) throw err;
         if(!user) {
-            return  res.json({success: false, msg:'User not found'});
+            return  res.json({success: false, msg:'Email not found'});
         }
 
         User.comparePassword(password,user.password, (err, isMatch) =>{
@@ -71,9 +85,10 @@ router.get('/',(req,res) =>{
 
 router.delete('/:id',(req,res) =>{
     User.remove({_id: req.params.id})
-        .then(()=>{
+        .then((user)=>{
             res.json({success: true, msg:'removed user'});
-        }).catch(()=>{
+        }).catch((err)=>{
+            console.log(err);
             res.json({success: false,msg:'error deleting user'});
         });
 });

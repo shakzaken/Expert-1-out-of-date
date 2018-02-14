@@ -1,8 +1,11 @@
+
+
+import { NavService } from './../../services/nav.service';
 import { CartService } from './../../services/cart.service';
 import { CategoriesService } from './../../services/categories.service';
 import { BooksService } from './../../services/books.service';
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../../models/books';
+import { Book,CartBook } from '../../models/books';
 
 @Component({
   selector: 'app-books-page',
@@ -11,24 +14,25 @@ import { Book } from '../../models/books';
 })
 export class BooksPageComponent implements OnInit {
 
-  booksForCart : {id:number,quantity:number}[];
+
   books : any[];
   categories : any[];
-  allBooks : any[];
   categoriesForView : any[];
   numberOfRows: number;
-  localBooks : any[];
+  
 
-  constructor(private booksService : BooksService,
-              private categoriesService : CategoriesService ,
-              private cartService : CartService) { }
+  constructor(
+    private booksService : BooksService,
+    private categoriesService : CategoriesService ,
+    private cartService : CartService,
+    private navService: NavService) { }
 
   ngOnInit() {
+    this.navService.checkUrl();
     this.booksService.getBooks()
       .subscribe((books:any[]) => {
-        this.books = books; 
-        this.allBooks = books;
-        this.localBooks = this.cartService.initStorage(this.books);
+        this.insertBooksForView(books); 
+     
       });
      this.categoriesService.getCategories()
         .subscribe((categories:any[]) =>{
@@ -38,33 +42,82 @@ export class BooksPageComponent implements OnInit {
             for(var i = 0 ; i < limit && i<categories.length ; i++)  {
               this.categoriesForView[i] = this.categories[i];
             }
-        }); 
-        
-      
+        });   
        
   }
 
-  filterCategory(categoryId) {
-    let array = this.allBooks.filter((value)=>{
-      return value.categoryId == categoryId;
-    });
-    this.books = array;
-  }
+  // filterCategory(categoryId) {
+  //   let array = this.allBooks.filter((value)=>{
+  //     return value.categoryId == categoryId;
+  //   });
+  //   this.books = array;
+  // }
 
-  unFilter() {
-    this.books = this.allBooks;
-  }
+  // unFilter() {
+  //   this.books = this.allBooks;
+  // }
 
 
-    addToCart(i) {
-      this.localBooks = this.cartService.addToCart(i);
+    addToCart(book : CartBook) {
+      let quantity = this.cartService.addToCart(book);
+      this.books.forEach((bookInArr) =>{
+        if(book.id == bookInArr.id){
+          bookInArr.quantity = quantity;
+        }
+      });
+     
     }
-    decToCart(i) {
-      this.localBooks = this.cartService.decToCart(i);
+    decToCart(book : CartBook) {
+      let quantity = this.cartService.decToCart(book);
+      this.books.forEach((bookInArr) =>{
+        if(book.id == bookInArr.id){
+          bookInArr.quantity = quantity;
+        }
+      });
+     
     }
   
+    getBookQuantity(id){
+      let res = this.books.find((book)=>{
+        return book.id == id;
+      });
+      
+      return res.quantity;
+    }
 
- 
+  private insertBooksForView(books){
+
+    let newBook: CartBook;
+    this.books= [];
+
+    for(let book of books){
+         newBook = {
+          id : book._id,
+          name : book.name,
+          categoryId : '',
+          price : book.price,
+          quantity : 0,
+          pictureUrl: book.pictureUrl
+        };
+        this.books.push(newBook);
+        this.checkBooksQuantity();
+    }
+
+  
+ }
+
+ private checkBooksQuantity(){
+   let arr = JSON.parse(localStorage.getItem('myCart'));
+   if(arr == undefined) return;
+   this.books.forEach((book) =>{
+      arr.forEach((item)=>{
+        if(book.id == item.id){
+          book.quantity = item.quantity;
+        }
+      });
+   });
+   
+ }
 
 }
 

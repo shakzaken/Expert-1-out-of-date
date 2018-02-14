@@ -1,3 +1,4 @@
+import { NavService } from './services/nav.service';
 import { CartService } from './services/cart.service';
 import { BooksService } from './services/books.service';
 import { CategoriesService } from './services/categories.service';
@@ -7,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routes,RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; 
+import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -34,6 +36,7 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { OrdersService } from './services/orders.service';
 import { OrdersListComponent } from './admin/orders-list/orders-list.component';
 import { OrderPageComponent } from './components/order-page/order-page.component';
+import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
 
 
 const appRoutes : Routes = [
@@ -41,7 +44,7 @@ const appRoutes : Routes = [
   {path:'register', component: RegisterComponent},
   {path:'courses',component: CoursesComponent},
   {path:'cart',component: CartPageComponent},
-  {path:'order',component: OrderPageComponent},
+  {path:'orders',component: OrderPageComponent},
 
 
   {path:'admin/:name',component: PanelComponent},
@@ -71,7 +74,8 @@ const appRoutes : Routes = [
     BooksPageComponent,
     CartPageComponent,
     OrdersListComponent,
-    OrderPageComponent
+    OrderPageComponent,
+    MainNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,8 @@ const appRoutes : Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [
     UserService,
@@ -88,7 +93,8 @@ const appRoutes : Routes = [
     CategoriesService,
     BooksService,
     CartService,
-    OrdersService
+    OrdersService,
+    NavService
   ],
   bootstrap: [AppComponent]
 })
